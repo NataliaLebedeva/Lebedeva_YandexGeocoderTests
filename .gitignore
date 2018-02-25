@@ -1,0 +1,6 @@
+src/.DS_Store
+src/main/java/beans/
+target/
+.idea
+*.iml
+.DS_Store

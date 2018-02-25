@@ -1,0 +1,81 @@
+{
+  "response": {
+    "GeoObjectCollection": {
+      "metaDataProperty": {
+        "GeocoderResponseMetaData": {
+          "request": "город Москва, ул. Тверская, дом 6",
+          "found": "6",
+          "results": "10",
+          "skip": "2",
+          "boundedBy": {
+            "Envelope": {
+              "lowerCorner": "37.342886 55.556202",
+              "upperCorner": "37.894954 55.956753"
+            }
+          },
+          "Point": {
+            "pos": "27.547790 53.892919"
+          },
+          "kind": "street"
+        }
+      },
+      "featureMember": [
+        {
+          "GeoObject": {
+            "metaDataProperty": {
+              "GeocoderMetaData": {
+                "kind": "house",
+                "text": "Россия, Москва, 2-я Тверская-Ямская улица, 6",
+                "precision": "exact",
+                "Address": {
+                  "country_code": "RU",
+                  "postal_code": "125047",
+                  "formatted": "Москва, 2-я Тверская-Ямская улица, 6",
+                  "Components": [
+                    {
+                      "kind": "country",
+                      "name": "Россия"
+                    }
+                  ]
+                },
+                "AddressDetails": {
+                  "Country": {
+                    "AddressLine": "Москва, 2-я Тверская-Ямская улица, 6",
+                    "CountryNameCode": "RU",
+                    "CountryName": "Россия",
+                    "AdministrativeArea": {
+                      "AdministrativeAreaName": "Москва",
+                      "Locality": {
+                        "LocalityName": "Москва",
+                        "Thoroughfare": {
+                          "ThoroughfareName": "2-я Тверская-Ямская улица",
+                          "Premise": {
+                            "PremiseNumber": "6",
+                            "PostalCode": {
+                              "PostalCodeNumber": "125047"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Москва, Россия",
+            "name": "2-я Тверская-Ямская улица, 6",
+            "boundedBy": {
+              "Envelope": {
+                "lowerCorner": "37.592276 55.76875",
+                "upperCorner": "37.600486 55.773378"
+              }
+            },
+            "Point": {
+              "pos": "37.596381 55.771064"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
