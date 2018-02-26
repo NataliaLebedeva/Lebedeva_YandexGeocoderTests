@@ -1,7 +1,7 @@
 package com.epam.geocoder.core;
 
 import beans.YaGeocoderResponse;
-import com.epam.geocoder.core.Data.GeoData;
+import com.epam.geocoder.core.data.YaGeoTestData;
 import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -12,6 +12,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.http.HttpStatus;
+import org.apache.http.protocol.HTTP;
 import org.hamcrest.Matchers;
 
 import java.util.HashMap;
@@ -37,9 +38,8 @@ public class YandexGeocoderApi {
 
     public static ResponseSpecification successResponse() {
         return new ResponseSpecBuilder()
-//                .expectContentType(ContentType.JSON)
-                .expectHeader("Connection", "keep-alive")
-                .expectHeader("Content-Type", "application/json; charset=utf-8")
+                .expectContentType(ContentType.JSON)
+                .expectHeader(HTTP.CONN_DIRECTIVE, HTTP.CONN_KEEP_ALIVE)
                 .expectResponseTime(Matchers.lessThan(20000L))
                 .expectStatusCode(HttpStatus.SC_OK)
                 .build();
@@ -59,7 +59,7 @@ public class YandexGeocoderApi {
             geoApi = api;
         }
 
-        public ApiBuilder geocode(GeoData geocode) {
+        public ApiBuilder geocode(YaGeoTestData geocode) {
             geoApi.params.put(GEOCODE, geocode);
             return this;
         }

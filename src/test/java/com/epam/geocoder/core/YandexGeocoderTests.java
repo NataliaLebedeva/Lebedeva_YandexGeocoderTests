@@ -9,8 +9,6 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.epam.geocoder.core.Data.GeoData.LENINA_SQARE;
-import static com.epam.geocoder.core.Data.GeoData.SPB_EPAM_CHR;
 import static com.epam.geocoder.core.YaGeocoderConstants.KIND;
 import static com.epam.geocoder.core.YaGeocoderConstants.LanguageRegion.en_RU;
 import static com.epam.geocoder.core.YaGeocoderConstants.ResponseFormat.JSON;
@@ -19,6 +17,8 @@ import static com.epam.geocoder.core.YaGeocoderConstants.ResponseSCO.LATLONG;
 import static com.epam.geocoder.core.YaGeocoderConstants.SKIP;
 import static com.epam.geocoder.core.YandexGeocoderApi.getYandexGeocoderAnswer;
 import static com.epam.geocoder.core.YandexGeocoderApi.with;
+import static com.epam.geocoder.core.data.YaGeoTestData.LENINA_SQARE;
+import static com.epam.geocoder.core.data.YaGeoTestData.SPB_EPAM_CHR;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 

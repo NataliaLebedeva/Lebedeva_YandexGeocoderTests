@@ -1,11 +1,11 @@
-package com.epam.geocoder.core.Data;
+package com.epam.geocoder.core.data;
 
-public enum GeoData {
+public enum YaGeoTestData {
     SPB_EPAM_CHR("Санкт-Петербург, набережная Чёрной речки, 41В"),
     LENINA_SQARE("Площадь Ленина");
     private String request;
 
-    GeoData(String requesr) {
+    YaGeoTestData(String requesr) {
         this.request = requesr;
     }
 
