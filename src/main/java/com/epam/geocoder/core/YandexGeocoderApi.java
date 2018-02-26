@@ -1,6 +1,7 @@
 package com.epam.geocoder.core;
 
 import beans.YaGeocoderResponse;
+import com.epam.geocoder.core.Data.GeoData;
 import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -15,23 +16,40 @@ import org.hamcrest.Matchers;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.epam.geocoder.core.YaGeocoderConstants.*;
-import static com.epam.geocoder.core.YaGeocoderConstants.FORMAT;
-import static com.epam.geocoder.core.YaGeocoderConstants.GEOCODE;
-import static com.epam.geocoder.core.YaGeocoderConstants.YA_GEOCODER_API_URI;
 
 public class YandexGeocoderApi {
+
+    private Map<String, Object> params = new HashMap<>();
 
     private YandexGeocoderApi() {
     }
 
-    private Map<String, Object> params = new HashMap<>();
-
     public static ApiBuilder with() {
         return new ApiBuilder(new YandexGeocoderApi());
+    }
+
+    public static YaGeocoderResponse getYandexGeocoderAnswer(Response response) {
+        return new Gson().fromJson(response.asString().trim(), YaGeocoderResponse.class);
+    }
+
+    public static ResponseSpecification successResponse() {
+        return new ResponseSpecBuilder()
+//                .expectContentType(ContentType.JSON)
+                .expectHeader("Connection", "keep-alive")
+                .expectHeader("Content-Type", "application/json; charset=utf-8")
+                .expectResponseTime(Matchers.lessThan(20000L))
+                .expectStatusCode(HttpStatus.SC_OK)
+                .build();
+    }
+
+    public static RequestSpecification baseRequestConfig() {
+        return new RequestSpecBuilder()
+                .setAccept(ContentType.JSON)
+                .setBaseUri(YA_GEOCODER_API_URI)
+                .build();
     }
 
     public static class ApiBuilder {
@@ -41,7 +59,7 @@ public class YandexGeocoderApi {
             geoApi = api;
         }
 
-        public ApiBuilder geocode(String geocode) {
+        public ApiBuilder geocode(GeoData geocode) {
             geoApi.params.put(GEOCODE, geocode);
             return this;
         }
@@ -98,27 +116,6 @@ public class YandexGeocoderApi {
                     .log().all()
                     .get(YA_GEOCODER_API_URI).prettyPeek();
         }
-    }
-
-    public static YaGeocoderResponse getYandexGeocoderAnswer(Response response) {
-        return new Gson().fromJson(response.asString().trim(), YaGeocoderResponse.class);
-    }
-
-    public static ResponseSpecification successResponse() {
-        return new ResponseSpecBuilder()
-//                .expectContentType(ContentType.JSON)
-                .expectHeader("Connection", "keep-alive")
-                .expectHeader("Content-Type", "application/json; charset=utf-8")
-                .expectResponseTime(Matchers.lessThan(20000L))
-                .expectStatusCode(HttpStatus.SC_OK)
-                .build();
-    }
-
-    public static RequestSpecification baseRequestConfig() {
-        return new RequestSpecBuilder()
-                .setAccept(ContentType.JSON)
-                .setBaseUri(YA_GEOCODER_API_URI)
-                .build();
     }
 
 }
